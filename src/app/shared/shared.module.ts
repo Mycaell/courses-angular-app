@@ -15,6 +15,9 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
+import { InfoDialogComponent } from './component/info-dialog/info-dialog.component';
+
+
 const angularModules: any = [CommonModule, RouterModule];
 
 const materialModules: any = [
@@ -34,13 +37,16 @@ const materialModules: any = [
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    InfoDialogComponent
+  ],
   imports: [
-    CommonModule
+    angularModules, materialModules
   ],
   exports: [
     angularModules,
-    materialModules
+    materialModules,
+    InfoDialogComponent
   ]
 })
 export class SharedModule { }
