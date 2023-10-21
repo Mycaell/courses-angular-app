@@ -16,6 +16,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { InfoDialogComponent } from './component/info-dialog/info-dialog.component';
+import { CategoryPipe } from './pipe/category.pipe';
 
 
 const angularModules: any = [CommonModule, RouterModule];
@@ -38,7 +39,8 @@ const materialModules: any = [
 
 @NgModule({
   declarations: [
-    InfoDialogComponent
+    InfoDialogComponent,
+    CategoryPipe
   ],
   imports: [
     angularModules, materialModules
@@ -46,7 +48,8 @@ const materialModules: any = [
   exports: [
     angularModules,
     materialModules,
-    InfoDialogComponent
+    InfoDialogComponent,
+    CategoryPipe
   ]
 })
 export class SharedModule { }
