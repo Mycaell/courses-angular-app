@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { first } from 'rxjs/operators';
 
 import { Course } from '../model/course';
+import { SelectItem } from '../model/select-item';
 
 @Injectable({
   providedIn: 'root'
@@ -43,7 +44,7 @@ export class CourseService {
   }
 
   getCategories() {
-    return this.httpClient.get<string[]>(`${this.API}/categories`);
+    return this.httpClient.get<SelectItem[]>(`${this.API}/categories`);
   }
 
 }

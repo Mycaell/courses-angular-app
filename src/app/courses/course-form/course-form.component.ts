@@ -9,6 +9,7 @@ import { catchError, Observable, of } from 'rxjs';
 
 import { InfoDialogComponent } from 'src/app/shared/component/info-dialog/info-dialog.component';
 import { CourseService } from '../services/course.service';
+import { SelectItem } from '../model/select-item';
 
 @Component({
   selector: 'app-course-form',
@@ -19,7 +20,7 @@ export class CourseFormComponent {
 
   form!: FormGroup;
 
-  readonly categories$: Observable<string[]>;
+  readonly categories$: Observable<SelectItem[]>;
 
   constructor(
     private formBuilder: FormBuilder,
