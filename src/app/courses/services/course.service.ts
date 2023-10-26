@@ -8,7 +8,7 @@ import { Course } from '../model/course';
 @Injectable({
   providedIn: 'root'
 })
-export class CoursesService {
+export class CourseService {
 
   private readonly API: string = '/api/courses';
 
@@ -40,6 +40,10 @@ export class CoursesService {
 
   delete(id: string) {
     return this.httpClient.delete(`${this.API}/${id}`).pipe(first());
+  }
+
+  getCategories() {
+    return this.httpClient.get<string[]>(`${this.API}/categories`);
   }
 
 }

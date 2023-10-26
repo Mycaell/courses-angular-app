@@ -5,3 +5,19 @@
   align-items: center;
   justify-content: center;
 }
+
+.mat-table {
+  overflow: auto;
+  max-height: 600px;
+}
+
+.action-column-header {
+  height: 60px;
+}
+
+.action-column-header,
+.action-column {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

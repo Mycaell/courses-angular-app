@@ -4,8 +4,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { Observable, catchError, of } from 'rxjs';
 
 import { Course } from '../model/course';
-import { CoursesService } from '../services/courses.service';
+import { CourseService } from '../services/course.service';
 import { InfoDialogComponent } from 'src/app/shared/component/info-dialog/info-dialog.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-courses-list',
@@ -16,11 +17,13 @@ export class CoursesListComponent {
   readonly courses$: Observable<Course[]>;
 
   readonly tableCourse = {
-    displayedColumns: ['name', 'category']
+    displayedColumns: ['name', 'category', 'actions']
   };
 
   constructor(
-    private service: CoursesService,
+    private service: CourseService,
+    private router: Router,
+    private route: ActivatedRoute,
     public dialog: MatDialog
   ) {
     this.courses$ = this.service.findAll().pipe(
@@ -35,4 +38,12 @@ export class CoursesListComponent {
       data: message,
     });
   }
+
+  onAdd() {
+    this.router.navigate(['novo'], { relativeTo: this.route });
+  }
+
+
+
+
 }

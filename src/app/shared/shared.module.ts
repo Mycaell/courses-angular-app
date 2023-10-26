@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -14,6 +14,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { RouterModule } from '@angular/router';
 
 import { InfoDialogComponent } from './component/info-dialog/info-dialog.component';
 import { CategoryPipe } from './pipe/category.pipe';
@@ -26,6 +27,8 @@ const materialModules: any = [
   MatCardModule,
   MatDialogModule,
   MatFormFieldModule,
+  ReactiveFormsModule,
+  FormsModule,
   MatIconModule,
   MatInputModule,
   MatProgressSpinnerModule,

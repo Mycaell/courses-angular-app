@@ -23,18 +23,19 @@
 
         <!-- Actions Column -->
         <ng-container matColumnDef="actions">
-          <mat-header-cell *matHeaderCellDef>
+          <mat-header-cell *matHeaderCellDef class="action-column-header">
             <button
               mat-mini-fab
               color="accent"
               aria-label="Adicionar um curso"
               matTooltip="Cadastrar"
+              (click)="onAdd()"
             >
               <mat-icon>add</mat-icon>
             </button>
           </mat-header-cell>
 
-          <mat-cell *matCellDef="let course">
+          <mat-cell *matCellDef="let course" class="action-column">
             <button
               mat-icon-button
               color="primary"
