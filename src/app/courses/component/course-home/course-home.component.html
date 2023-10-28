@@ -3,11 +3,11 @@
     <mat-toolbar>Cursos Disponíveis</mat-toolbar>
 
     <div class="mat-elevation-z8">
-      <app-courses-list
+      <app-course-list
         *ngIf="courses$ | async as courses; else loading"
         [courses]="courses"
         (add)="onAdd()"
-      ></app-courses-list>
+      ></app-course-list>
     </div>
   </mat-card-content>
 

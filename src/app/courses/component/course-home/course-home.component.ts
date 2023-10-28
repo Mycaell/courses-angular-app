@@ -10,11 +10,11 @@ import { InfoDialogComponent } from 'src/app/shared/component/info-dialog/info-d
 
 
 @Component({
-  selector: 'app-courses',
-  templateUrl: './courses.component.html',
-  styleUrls: ['./courses.component.scss']
+  selector: 'app-course-house',
+  templateUrl: './course-home.component.html',
+  styleUrls: ['./course-home.component.scss']
 })
-export class CoursesComponent {
+export class CourseHomeComponent {
 
   courses$: Observable<Course[]> | null = null;
 
