@@ -12,7 +12,7 @@ export class CourseListComponent {
   @Input() courses: Course[] = [];
 
   @Output() readonly add: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Output() readonly edit: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() readonly edit: EventEmitter<Course> = new EventEmitter<Course>();
   @Output() readonly delete: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   readonly tableCourse = {
@@ -23,8 +23,8 @@ export class CourseListComponent {
     this.add.emit(true);
   }
 
-  onEdit() {
-    this.edit.emit(true);
+  onEdit(course: Course) {
+    this.edit.emit(course);
   }
 
   onDelete() {

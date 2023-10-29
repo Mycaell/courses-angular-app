@@ -7,6 +7,7 @@ import { catchError, Observable, of } from 'rxjs';
 import { Course } from '../../model/course';
 import { CourseService } from '../../service/course.service';
 import { InfoDialogComponent } from 'src/app/shared/component/info-dialog/info-dialog.component';
+import { CoursesRoutes } from '../../courses-routes';
 
 
 @Component({
@@ -24,10 +25,10 @@ export class CourseHomeComponent {
     private route: ActivatedRoute,
     public dialog: MatDialog
   ) {
-    this.refresh();
+    this.getCourses();
   }
 
-  refresh() {
+  getCourses() {
     this.courses$ = this.service.findAll().pipe(
       catchError((error) => {
         this.openDialogError('ocorreu um erro ao carregar os cursos.');
@@ -42,7 +43,13 @@ export class CourseHomeComponent {
   }
 
   onAdd() {
-    this.router.navigate(['novo'], { relativeTo: this.route });
+    this.router.navigate([CoursesRoutes.CREATE], { relativeTo: this.route });
+  }
+
+  onEdit(course: Course) {
+    const editRoute = CoursesRoutes.EDIT.replace(':id', String(course.id));
+
+    this.router.navigate([editRoute], { relativeTo: this.route });
   }
 
 
