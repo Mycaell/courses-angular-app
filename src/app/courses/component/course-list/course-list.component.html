@@ -1,4 +1,4 @@
-<mat-table [dataSource]="courses" *ngIf="courses.length > 0; else noTableRows">
+<mat-table [dataSource]="courses">
   <!-- Name Column -->
   <ng-container matColumnDef="name">
     <mat-header-cell *matHeaderCellDef>Curso</mat-header-cell>
@@ -56,12 +56,13 @@
   <mat-header-row
     *matHeaderRowDef="tableCourse.displayedColumns"
   ></mat-header-row>
+
   <mat-row
     *matRowDef="let row; columns: tableCourse.displayedColumns"
   ></mat-row>
 </mat-table>
 
-<ng-template #noTableRows>
+<ng-template [ngIf]="courses.length == 0">
   <div class="empty-message">
     <h3>Nenhum curso encontrado</h3>
   </div>
