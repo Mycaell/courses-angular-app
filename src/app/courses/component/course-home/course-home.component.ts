@@ -52,5 +52,8 @@ export class CourseHomeComponent {
     this.router.navigate([editRoute], { relativeTo: this.route });
   }
 
+  onDelete(course: Course) {
+    // todo: confirm and call service
+  }
 
 }
