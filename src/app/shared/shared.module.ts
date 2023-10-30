@@ -18,6 +18,7 @@ import { RouterModule } from '@angular/router';
 
 import { InfoDialogComponent } from './component/info-dialog/info-dialog.component';
 import { CategoryPipe } from './pipe/category.pipe';
+import { ConfirmDialogComponent } from './component/confirm-dialog/confirm-dialog.component';
 
 
 const angularModules: any = [CommonModule, RouterModule];
@@ -43,7 +44,8 @@ const materialModules: any = [
 @NgModule({
   declarations: [
     InfoDialogComponent,
-    CategoryPipe
+    CategoryPipe,
+    ConfirmDialogComponent
   ],
   imports: [
     angularModules, materialModules
@@ -52,7 +54,8 @@ const materialModules: any = [
     angularModules,
     materialModules,
     InfoDialogComponent,
-    CategoryPipe
+    CategoryPipe,
+    ConfirmDialogComponent
   ]
 })
 export class SharedModule { }
