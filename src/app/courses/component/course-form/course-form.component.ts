@@ -2,7 +2,6 @@ import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 
 import { catchError, Observable, of } from 'rxjs';
@@ -12,6 +11,7 @@ import { SelectItem } from '../../model/select-item';
 import { CourseService } from '../../service/course.service';
 import { Course } from './../../model/course';
 import { ToastService } from 'src/app/shared/service/toast.service';
+import { FormUtilsService } from 'src/app/shared/form/form-utils.service';
 
 
 @Component({
@@ -26,12 +26,12 @@ export class CourseFormComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private service: CourseService,
-    private snackBar: MatSnackBar,
     private location: Location,
     public dialog: MatDialog,
     private route: ActivatedRoute,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private courseService: CourseService,
+    public formUtils: FormUtilsService
   ) {
     this.createForm();
     this.getCategories();
@@ -48,7 +48,7 @@ export class CourseFormComponent {
   }
 
   getCategories() {
-    this.categories$ = this.service.getCategories().pipe(
+    this.categories$ = this.courseService.getCategories().pipe(
       catchError((error) => {
         this.openDialogError('Ocorreu um erro ao carregar as categorias.');
         return of([]);
@@ -57,7 +57,7 @@ export class CourseFormComponent {
   }
 
   onSubmit() {
-    this.service.save(this.form.value).subscribe({
+    this.courseService.save(this.form.value).subscribe({
       next: () => {
         this.onSuccess();
       },
