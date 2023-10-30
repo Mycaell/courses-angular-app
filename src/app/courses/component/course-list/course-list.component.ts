@@ -28,7 +28,7 @@ export class CourseListComponent {
   }
 
   onDelete(course: Course) {
-    this.edit.emit(course);
+    this.delete.emit(course);
   }
 
 }

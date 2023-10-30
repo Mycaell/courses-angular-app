@@ -15,5 +15,5 @@ export const courseResolver: ResolveFn<Course> = (
     return service.findById(route.params['id']);
   }
 
-  return of({ id: null, name: '', category: '' });
+  return of({ id: undefined, name: '', category: '' });
 };

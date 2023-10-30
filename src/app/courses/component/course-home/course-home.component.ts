@@ -8,6 +8,8 @@ import { Course } from '../../model/course';
 import { CourseService } from '../../service/course.service';
 import { InfoDialogComponent } from 'src/app/shared/component/info-dialog/info-dialog.component';
 import { CoursesRoutes } from '../../courses-routes';
+import { ConfirmDialogComponent } from 'src/app/shared/component/confirm-dialog/confirm-dialog.component';
+import { ToastService } from './../../../shared/service/toast.service';
 
 
 @Component({
@@ -23,7 +25,8 @@ export class CourseHomeComponent {
     private service: CourseService,
     private router: Router,
     private route: ActivatedRoute,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private toastService: ToastService
   ) {
     this.getCourses();
   }
@@ -31,7 +34,7 @@ export class CourseHomeComponent {
   getCourses() {
     this.courses$ = this.service.findAll().pipe(
       catchError((error) => {
-        this.openDialogError('ocorreu um erro ao carregar os cursos.');
+        this.openDialogError('Ocorreu um erro ao carregar os cursos.');
         return of([]);
       }));
   }
@@ -48,12 +51,27 @@ export class CourseHomeComponent {
 
   onEdit(course: Course) {
     const editRoute = CoursesRoutes.EDIT.replace(':id', String(course.id));
-
     this.router.navigate([editRoute], { relativeTo: this.route });
   }
 
   onDelete(course: Course) {
-    // todo: confirm and call service
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: 'Tem certeza que deseja remover esse curso?',
+    });
+
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result) {
+        this.service.delete(course.id ?? 0).subscribe({
+          next: () => {
+            this.getCourses();
+            this.toastService.open("Curso removido.", 'success');
+          },
+          error: () => {
+            this.openDialogError("Ocorreu um erro ao tentar remover o curso.");
+          }
+        });
+      }
+    });
   }
 
 }

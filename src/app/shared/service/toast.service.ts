@@ -11,7 +11,7 @@ export class ToastService {
     toast: true,
     position: 'top-end',
     showConfirmButton: false,
-    timer: 4000,
+    timer: 5000,
     timerProgressBar: true,
     didOpen: (element) => {
       element.addEventListener('mouseenter', Swal.stopTimer);

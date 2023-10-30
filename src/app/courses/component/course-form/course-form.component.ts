@@ -11,6 +11,7 @@ import { InfoDialogComponent } from 'src/app/shared/component/info-dialog/info-d
 import { SelectItem } from '../../model/select-item';
 import { CourseService } from '../../service/course.service';
 import { Course } from './../../model/course';
+import { ToastService } from 'src/app/shared/service/toast.service';
 
 
 @Component({
@@ -29,12 +30,12 @@ export class CourseFormComponent {
     private snackBar: MatSnackBar,
     private location: Location,
     public dialog: MatDialog,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toastService: ToastService
   ) {
     this.createForm();
     this.getCategories();
   }
-
 
   createForm() {
     const course: Course = this.route.snapshot.data['course'];
@@ -49,7 +50,7 @@ export class CourseFormComponent {
   getCategories() {
     this.categories$ = this.service.getCategories().pipe(
       catchError((error) => {
-        this.openDialogError('ocorreu um erro ao carregar as categorias.');
+        this.openDialogError('Ocorreu um erro ao carregar as categorias.');
         return of([]);
       })
     );
@@ -66,25 +67,21 @@ export class CourseFormComponent {
     });
   }
 
-  private backPage() {
-    this.location.back();
-  }
-
   onCancel() {
     this.backPage();
   }
 
-  private showSnackBar(msg: string) {
-    this.snackBar.open(msg, '', { duration: 7000 });
+  private backPage() {
+    this.location.back();
   }
 
   private onSuccess() {
-    this.showSnackBar("Curso salvo com sucesso!");
+    this.toastService.open("Curso salvo.", 'success');
     this.backPage();
   }
 
   private onError() {
-    this.showSnackBar("Erro ao salvar curso.");
+    this.toastService.open("Ocorreu um erro ao salvar o curso.", 'error');
   }
 
   openDialogError(message: string) {
